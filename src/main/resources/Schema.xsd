@@ -1,7 +1,7 @@
 <?xml version="1.0"?>
 <!-- Created with Liquid Technologies Online Tools 1.0 (https://www.liquid-technologies.com) -->
 <xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" targetNamespace="https://t4is.uv.mx/saludos" xmlns:tns="https://t4is.uv.mx/saludos" elementFormDefault="qualified">
- 
+  <xs:element name="SaludarRequest"/>
   <xs:element name="SaludarResponse">
     <xs:complexType>
       <xs:sequence>
@@ -9,32 +9,33 @@
       </xs:sequence>
     </xs:complexType>
   </xs:element>
-    <xs:element name="EliminarReq">
+  <xs:element name="EliminarRequest">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element name="lugares" type="xs:int" />
+      </xs:sequence>
+  </xs:complexType>
+  </xs:element>
+  <xs:element name="EliminarResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element name="respuesta" type="xs:string" />
+      </xs:sequence>
+  </xs:complexType>
+  </xs:element>
+  <xs:element name="AgregarRequest">
     <xs:complexType>
       <xs:sequence>
         <xs:element name="lugares" type="xs:int" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>
-    <xs:element name="EliminarRes">
+  <xs:element name="AgregarResponse">
     <xs:complexType>
       <xs:sequence>
         <xs:element name="respuesta" type="xs:string" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>
-    <xs:element name="AgregarReq">
-    <xs:complexType>
-      <xs:sequence>
-        <xs:element name="lugares" type="xs:int" />
-      </xs:sequence>
-    </xs:complexType>
-  </xs:element>
-    <xs:element name="AgregarRes">
-    <xs:complexType>
-      <xs:sequence>
-        <xs:element name="respuesta" type="xs:string" />
-      </xs:sequence>
-    </xs:complexType>
-  </xs:element>
+
 </xs:schema>

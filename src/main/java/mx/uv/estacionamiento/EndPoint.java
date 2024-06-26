@@ -5,10 +5,10 @@ import org.springframework.ws.server.endpoint.annotation.PayloadRoot;
 import org.springframework.ws.server.endpoint.annotation.RequestPayload;
 import org.springframework.ws.server.endpoint.annotation.ResponsePayload;
 
-import https.t4is_uv_mx.saludos.AgregarReq;
-import https.t4is_uv_mx.saludos.AgregarRes;
-import https.t4is_uv_mx.saludos.EliminarReq;
-import https.t4is_uv_mx.saludos.EliminarRes;
+import https.t4is_uv_mx.saludos.AgregarRequest;
+import https.t4is_uv_mx.saludos.AgregarResponse;
+import https.t4is_uv_mx.saludos.EliminarRequest;
+import https.t4is_uv_mx.saludos.EliminarResponse;
 import https.t4is_uv_mx.saludos.SaludarResponse;
 
 @Endpoint
@@ -16,7 +16,7 @@ public class EndPoint {
     private int LUGARESMAXIMOS = 80;
     private int lugaresVacios = 0;
 
-    @PayloadRoot(namespace = "https://t4is.uv.mx/saludos", localPart = "")
+    @PayloadRoot(namespace = "https://t4is.uv.mx/saludos", localPart = "SaludarRequest")
     @ResponsePayload
     public SaludarResponse ConsultarLugaresVacios() {
         SaludarResponse respuesta = new SaludarResponse();
@@ -27,10 +27,10 @@ public class EndPoint {
     }
 
     // agregar
-    @PayloadRoot(namespace = "https://t4is.uv.mx/saludos", localPart = "AgregarReq")
+    @PayloadRoot(namespace = "https://t4is.uv.mx/saludos", localPart = "AgregarRequest")
     @ResponsePayload
-    public AgregarRes AgregarLugaresVacios(@RequestPayload AgregarReq peticion) {
-        AgregarRes respuesta = new AgregarRes();
+    public AgregarResponse AgregarLugaresVacios(@RequestPayload AgregarRequest peticion) {
+        AgregarResponse respuesta = new AgregarResponse();
 
         int lugaresAAgregar = peticion.getLugares();
 
@@ -52,10 +52,10 @@ public class EndPoint {
     }
 
     // Eliminar
-    @PayloadRoot(namespace = "https://t4is.uv.mx/saludos", localPart = "EliminarReq")
+    @PayloadRoot(namespace = "https://t4is.uv.mx/saludos", localPart = "EliminarRequest")
     @ResponsePayload
-    public EliminarRes EliminarLugaresVacios(@RequestPayload EliminarReq peticion) {
-        EliminarRes respuesta = new EliminarRes();
+    public EliminarResponse EliminarLugaresVacios(@RequestPayload EliminarRequest peticion) {
+        EliminarResponse respuesta = new EliminarResponse();
 
         int lugaresAEliminar = peticion.getLugares();
 
