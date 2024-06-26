@@ -1,79 +1,78 @@
 package mx.uv.estacionamiento;
 
 import org.springframework.ws.server.endpoint.annotation.Endpoint;
+import org.springframework.ws.server.endpoint.annotation.PayloadRoot;
+import org.springframework.ws.server.endpoint.annotation.RequestPayload;
+import org.springframework.ws.server.endpoint.annotation.ResponsePayload;
+
+import https.t4is_uv_mx.saludos.AgregarReq;
+import https.t4is_uv_mx.saludos.AgregarRes;
+import https.t4is_uv_mx.saludos.EliminarReq;
+import https.t4is_uv_mx.saludos.EliminarRes;
+import https.t4is_uv_mx.saludos.SaludarResponse;
 
 @Endpoint
-public class EndPoint{
-
+public class EndPoint {
     private int LUGARESMAXIMOS = 80;
     private int lugaresVacios = 0;
 
-    @PayloadRoot(namespace = "https://t4is.uv.mx/saludos", localPart = "BuscarPorIdRequest")
+    @PayloadRoot(namespace = "https://t4is.uv.mx/saludos", localPart = "")
     @ResponsePayload
-
-
-    public SaludarResponse ConsultarLugaresVacios(){
+    public SaludarResponse ConsultarLugaresVacios() {
         SaludarResponse respuesta = new SaludarResponse();
-        int lugaresVacios = LUGARESMAXIMOS - lugaresOcupados;
-        
-        respuesta.setRespuesta(integer.toString(lugaresVacios));
+
+        respuesta.setRespuesta(Integer.toString(lugaresVacios));
 
         return respuesta;
     }
 
-    //agregar
+    // agregar
     @PayloadRoot(namespace = "https://t4is.uv.mx/saludos", localPart = "AgregarReq")
     @ResponsePayload
-
-    public AgregarRes Buscar(@RequestPayLoad BuscarPorIdRequest peticion){
+    public AgregarRes AgregarLugaresVacios(@RequestPayload AgregarReq peticion) {
         AgregarRes respuesta = new AgregarRes();
 
         int lugaresAAgregar = peticion.getLugares();
 
-        if (lugaresAAgregar < 0){
-            respuesta.setData("lugares no pueden ser negativos ");
+        if (lugaresAAgregar < 0) {
+            respuesta.setRespuesta("lugares no pueden ser negativos ");
             return respuesta;
         }
 
-        if (lugaresVacios + lugaresAAgregar > lugaresVacios){
-            respuesta.setData("no se pueden agregar" + lugaresAAgregar + "lugares. Excede el limite");
+        if (lugaresVacios + lugaresAAgregar > LUGARESMAXIMOS) {
+            respuesta.setRespuesta("no se pueden agregar" + lugaresAAgregar + "lugares. Excede el limite");
             return respuesta;
 
         }
 
         lugaresVacios += lugaresAAgregar;
 
-        respuesta.setData("operacion realizada con exito. Lugares vacios actuales: "+lugaresVacios);
+        respuesta.setRespuesta("operacion realizada con exito. Lugares vacios actuales: " + lugaresVacios);
         return respuesta;
     }
 
-
-    //Eliminar
-
+    // Eliminar
     @PayloadRoot(namespace = "https://t4is.uv.mx/saludos", localPart = "EliminarReq")
     @ResponsePayload
-
-    public EliminarRes Buscar(@RequestPayLoad BuscarPorIdRequest peticion){
+    public EliminarRes EliminarLugaresVacios(@RequestPayload EliminarReq peticion) {
         EliminarRes respuesta = new EliminarRes();
 
         int lugaresAEliminar = peticion.getLugares();
 
-        if (lugaresAEliminar < 0){
-            respuesta.setData("no pueden ser menos ");
+        if (lugaresAEliminar < 0) {
+            respuesta.setRespuesta("no pueden ser menos ");
             return respuesta;
         }
 
-        if (lugaresAEliminar > lugaresVacios){
-            respuesta.setData("no hay lugares vacios para eliminar");
+        if (lugaresAEliminar > lugaresVacios) {
+            respuesta.setRespuesta("no hay lugares vacios para eliminar");
             return respuesta;
-
         }
 
         lugaresVacios += lugaresAEliminar;
 
-        respuesta.setData("operacion realizada con exito. Lugares vacios actuales: "+lugaresVacios);
+        respuesta.setRespuesta("operacion realizada con exito. Lugares vacios actuales: " + lugaresVacios);
         return respuesta;
     }
-
 
 }

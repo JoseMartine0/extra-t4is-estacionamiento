@@ -5,41 +5,36 @@
   <xs:element name="SaludarResponse">
     <xs:complexType>
       <xs:sequence>
-        <xs:element maxOccurs="unbounded" name="lugares" type="xs:string" />
+        <xs:element name="respuesta" type="xs:string" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>
-
     <xs:element name="EliminarReq">
     <xs:complexType>
       <xs:sequence>
-        <xs:element name="lugares" type="xs:string" />
+        <xs:element name="lugares" type="xs:int" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>
-
     <xs:element name="EliminarRes">
     <xs:complexType>
       <xs:sequence>
-        <xs:element name="lugares" type="xs:string" />
+        <xs:element name="respuesta" type="xs:string" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>
-
     <xs:element name="AgregarReq">
     <xs:complexType>
       <xs:sequence>
-        <xs:element name="lugares" type="xs:string" />
+        <xs:element name="lugares" type="xs:int" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>
-
     <xs:element name="AgregarRes">
     <xs:complexType>
       <xs:sequence>
-        <xs:element name="lugares" type="xs:string" />
+        <xs:element name="respuesta" type="xs:string" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>
-  
 </xs:schema>
